@@ -4,5 +4,16 @@ jobs :
     runs-on : ubuntu-latest
     steps :
       - name : Check node version 
-        run : node --version 
+        run : node --version
+      - name : checkout repository
+        uses : actions/Checkout@v4
+      - name : set up nodeJS
+        uses :  actions/setup-node@v3
+        with : 
+          node-version : 20
+          cache : "npm"
+      - name : install dependencies
+        run : npm install
+      - run : npx eslint index.js 
+      - run : node index.js          
 
